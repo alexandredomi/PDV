@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Caixa</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="center-title">
+        <h1>Caixa da Loja</h1>
+        <p>versao 1.0</p>
+    </div>
+    <div class="container">
+        <form id="productForm">
+            <div class="input-group">
+                <label for="productName">Nome do Produto:</label>
+                <input type="text" id="productName" required>
+            </div>
+            <div class="input-group">
+                <label for="productQuantity">Quantidade:</label>
+                <input type="number" id="productQuantity" required>
+            </div>
+            <div class="input-group">
+                <label for="productCost">Custo:</label>
+                <input type="number" id="productCost" required>
+            </div>
+            <div class="input-group">
+                <label for="productPrice">Preço de Venda:</label>
+                <input type="number" id="productPrice" required>
+            </div>
+            <div class="input-group">
+                <label for="productSupplier">Fornecedor:</label>
+                <select id="productSupplier" required>
+                    <option value="">Selecione um fornecedor</option>
+                    <option value="libert">Libert</option>
+                    <option value="dentinho">Dentinho</option>
+                    <option value="fox">Fox</option>
+                    <option value="juares">Juares</option>
+                    <option value="bandeira">Bandeira</option>
+                </select>
+            </div>
+            <button type="button" class="btn" onclick="addProduct()">Adicionar Produto</button>
+        </form>
+        <ul class="titulo-lista">
+            <li><strong>Produto</strong></li>
+            <li><strong>Quant.</strong></li>
+            <li><strong>Custo</strong></li>
+            <li><strong>Preço</strong></li>
+            <li><strong>fornecedor</strong></li>
+        </ul>
+        <ul id="productList"></ul>
+        <button id="closeRegisterBtn" class="btn" onclick="calculateProfits()">Fechar Caixa e Calcular Lucros</button>
+        <div id="results"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
