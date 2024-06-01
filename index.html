@@ -15,7 +15,7 @@
 <body>
     <header>
         <h2>PDV</h2>
-        <button><img src="img/menu-aberto.png" alt="" width="30px"></button>
+        <button id="botaoOpenMobile"><img src="img/menu-aberto.png" alt="" width="30px"></button>
     </header>
     <div class="container">
         <form id="productForm">
@@ -198,6 +198,19 @@
 
             window.open(whatsappUrl, '_blank');
         });
+
+        const menuMobile = document.querySelector("#menuMobile")
+        const botaoOpenMobile = document.querySelector("#botaoOpenMobile")
+        const botaoCloseMobile = document.querySelector("#botaoCloseMobile")
+
+        botaoOpenMobile.addEventListener("click", function (){
+            menuMobile.classList.add(".flex")
+        })
+        botaoCloseMobile.addEventListener("click", function (){
+            menuMobile.classList.remove(".flex")
+        })
+
+        console.log("deu certo")
     </script>
 </body>
 </html>

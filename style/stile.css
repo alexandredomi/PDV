@@ -106,6 +106,7 @@ body .container .historico ul {
   justify-content: space-between;
 }
 body .container .historico ul li {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 10px 0px;
