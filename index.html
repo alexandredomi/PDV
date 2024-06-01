@@ -52,13 +52,25 @@
         </form>
         <div class="historico">
             <h2>Historico</h2>
+            <ul>
+                <li>prod.</li>
+                <li>quant.</li>
+                <li>cust.</li>
+                <li>lucro</li>
+                <li>forn.</li>
+            </ul>
             <ul id="productList"></ul>
         </div>
-        <button id="closeRegisterBtn" class="btn" onclick="calculateProfits()">Fechar Caixa e Calcular Lucros</button>
-        <button id="clearStorageBtn" class="btn" onclick="clearStorage()">Apagar Histórico</button>
+        <h2>Final Caixa</h2>
         <div id="results"></div>
+        
         <div id="menuMobile">
-            <button id="enviarWhats">Enviar Resultados para WhatsApp</button>
+            <div class="containerButtonClose">
+                <button id="CloseButton"><img src="img/x.png" alt=""></button>
+            </div>
+            <button id="closeRegisterBtn" class="btn" onclick="calculateProfits()">Fexar caixa</button>
+            <button id="clearStorageBtn" class="btn" onclick="clearStorage()">Apagar Histórico</button>
+            <button id="enviarWhats">Enviar WhatsApp</button>
         </div>
     </div>
     <script>

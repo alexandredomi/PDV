@@ -96,10 +96,13 @@ body .container #closeRegisterBtn {
 body .container .historico {
   background-color: #262a2b;
 }
+body .container .historico h2 {
+  text-align: center;
+  font-size: 28px;
+}
 body .container .historico ul {
   list-style: none;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
 body .container .historico ul li {
@@ -125,6 +128,29 @@ body .container #clearStorageBtn {
   border: none;
 }
 body .container #menuMobile {
+  z-index: 5;
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  right: 0px;
+  top: 0px;
+  display: none;
+  flex-direction: column;
+  padding: 15px;
+  gap: 20px;
+}
+body .container #menuMobile .containerButtonClose {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin: 10px -10px;
+}
+body .container #menuMobile .containerButtonClose button {
+  border: none;
+  width: 35px;
+  height: 35px;
+}
+body .container #menuMobile .containerButtonClose button img {
   width: 100%;
 }
 body .container #menuMobile #enviarWhats {
@@ -138,4 +164,9 @@ body .container #menuMobile #enviarWhats {
   border-radius: 25px;
   font-weight: 500;
   border: none;
+}
+body .container h2 {
+  font-size: 28px;
+  text-align: center;
+  padding: 20px 0px;
 }/*# sourceMappingURL=stile.css.map */
