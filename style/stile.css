@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #111213;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 15px;
+}
+
+body header {
+  display: flex;
+  justify-content: space-between;
+  color: #f1f1f1;
+  padding: 10px 0px;
+}
+body header h2 {
+  font-weight: 600;
+}
+body header button {
+  width: 40px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+body header button img {
+  width: 30px;
+}
+
+body .container {
+  width: 100%;
+  color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+body .container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+body .container form .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+body .container form .input-group input {
+  width: 100%;
+  height: 40px;
+  border: solid 2px #262a2b;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #f1f1f1;
+  padding-left: 10px;
+}
+body .container form .input-group select, body .container form .input-group option {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: #262a2b;
+  color: #f1f1f1;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+body .container form button {
+  bottom: 20px;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 18px;
+  color: #111213;
+  background-color: #f1f1f1;
+  border-radius: 25px;
+  font-weight: 500;
+}
+body .container #closeRegisterBtn {
+  bottom: 20px;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 18px;
+  color: #f1f1f1;
+  background-color: rgb(24, 115, 17);
+  border-radius: 25px;
+  font-weight: 500;
+  border: none;
+}
+body .container .historico {
+  background-color: #262a2b;
+}
+body .container .historico ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+body .container .historico ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+body .container .results p {
+  font-size: 20px;
+}
+body .container .results p strong {
+  font-weight: 600;
+}
+body .container #clearStorageBtn {
+  bottom: 20px;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 18px;
+  color: #f1f1f1;
+  background-color: rgb(115, 17, 17);
+  border-radius: 25px;
+  font-weight: 500;
+  border: none;
+}
+body .container #menuMobile {
+  width: 100%;
+}
+body .container #menuMobile #enviarWhats {
+  width: 100%;
+  bottom: 20px;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 18px;
+  color: #f1f1f1;
+  background-color: rgb(146, 157, 21);
+  border-radius: 25px;
+  font-weight: 500;
+  border: none;
+}/*# sourceMappingURL=stile.css.map */
