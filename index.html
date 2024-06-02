@@ -60,11 +60,13 @@
                 <li>forn.</li>
             </ul>
             <ul id="productList"></ul>
+            <div class="linha"></div>
         </div>
-        <h2>Final Caixa</h2>
+        
         <div id="results"></div>
         
         <div id="menuMobile">
+            <img src="img/x.png" alt="" onclick="clickCloseMenu()">
             <button id="closeRegisterBtn" class="btn" onclick="calculateProfits()">Fexar caixa</button>
             <button id="clearStorageBtn" class="btn" onclick="clearStorage()">Apagar Histórico</button>
             <button id="enviarWhats">Enviar WhatsApp</button>
@@ -73,13 +75,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
 
-         function clickMenu() {
-                if(menuMobile.style.display == "block"){
-                    menuMobile.style.display = "none"
-                }else{
-                    menuMobile.style.display = "block"
-                }
-            }
+        function clickMenu() {
+            menuMobile.style.display = "block"
+        }
+
+        function clickCloseMenu(){
+            menuMobile.style.display = "none"
+        }
 
         function addProduct() {
             var name = document.getElementById("productName").value;
