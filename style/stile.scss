@@ -129,6 +129,10 @@ body {
                 text-align: center;
                 font-size: 28px;
             }
+            #productList{
+                display: flex;
+                flex-direction: column;
+            }
             ul{
                 list-style: none;
                 display: flex;
@@ -143,6 +147,9 @@ body {
                     display: flex;
                     justify-content: space-around;
                     text-align: center;
+                    div{
+                        width: 20%;
+                    }
                 }
             }
             
