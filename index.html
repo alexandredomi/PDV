@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -27,15 +27,15 @@
                 <div>
                     <label for="productQuantity">Quantidade :</label>
                 </div>
-                <input type="number" id="productQuantity" required>
+                <input type="number" id="productQuantity" required min="1">
             </div>
             <div class="input-group">
                 <label for="productCost">Custo :</label>
-                <input type="number" id="productCost" required>
+                <input type="number" id="productCost" required min="0" step="0.01">
             </div>
             <div class="input-group">
                 <label for="productPrice">Preço de Venda :</label>
-                <input type="number" id="productPrice" required>
+                <input type="number" id="productPrice" required min="0" step="0.01">
             </div>
             <div class="input-group">
                 <label for="productSupplier">Fornecedor :</label>
@@ -52,12 +52,13 @@
         </form>
         <div class="historico">
             <h2>Historico</h2>
-            <ul>
-                <li>prod.</li>
+            <ul class="nome-historico">
+                <li>produto</li>
                 <li>quant.</li>
-                <li>cust.</li>
+                <li>custo</li>
                 <li>lucro</li>
-                <li>forn.</li>
+                <li>fornc.</li>
+                <li></li>
             </ul>
             <ul id="productList"></ul>
             <div class="linha"></div>
@@ -66,7 +67,9 @@
         <div id="results"></div>
         
         <div id="menuMobile">
-            <img src="img/x.png" alt="" onclick="clickCloseMenu()">
+            <div class="img-mobile">
+                <img src="img/x.png" alt="" onclick="clickCloseMenu()">
+            </div>
             <button id="closeRegisterBtn" class="btn" onclick="calculateProfits()">Fexar caixa</button>
             <button id="clearStorageBtn" class="btn" onclick="clearStorage()">Apagar Histórico</button>
             <button id="enviarWhats">Enviar WhatsApp</button>
@@ -76,11 +79,11 @@
         document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
 
         function clickMenu() {
-            menuMobile.style.display = "block"
+            document.getElementById('menuMobile').style.display = "flex";
         }
 
         function clickCloseMenu(){
-            menuMobile.style.display = "none"
+            document.getElementById('menuMobile').style.display = "none";
         }
 
         function addProduct() {
@@ -90,48 +93,69 @@
             var price = document.getElementById("productPrice").value;
             var supplier = document.getElementById("productSupplier").value;
 
-            var productList = document.getElementById("productList");
+            if (name && quantity > 0 && cost >= 0 && price >= 0 && supplier) {
+                var productList = document.getElementById("productList");
 
-            var li = document.createElement("li");
-            li.classList.add("productItem");
-            li.innerHTML = `
-                <div>${name}</div>
-                <div>${quantity}</div>
-                <div>${cost}</div>
-                <div>${price}</div>
-                <div>${supplier}</div>
-            `;
+                var li = document.createElement("li");
+                li.classList.add("productItem");
+                li.innerHTML = `
+                    <div>${name}</div>
+                    <div>${quantity}</div>
+                    <div>${cost}</div>
+                    <div>${price}</div>
+                    <div>${supplier}</div>
+                    <button onclick="deleteProduct(this)">Excluir</button>
+                `;
 
-            productList.appendChild(li);
+                productList.appendChild(li);
 
-            saveToLocalStorage();
+                saveToLocalStorage();
 
-            // Limpa os campos do formulário após adicionar o produto
-            document.getElementById("productName").value = "";
-            document.getElementById("productQuantity").value = "";
-            document.getElementById("productCost").value = "";
-            document.getElementById("productPrice").value = "";
-            document.getElementById("productSupplier").value = "";
+                // Clear form fields after adding the product
+                document.getElementById("productName").value = "";
+                document.getElementById("productQuantity").value = "";
+                document.getElementById("productCost").value = "";
+                document.getElementById("productPrice").value = "";
+                document.getElementById("productSupplier").value = "";
+            } else {
+                alert("Please fill out all fields correctly.");
+            }
+        }
+
+        function deleteProduct(button) {
+            if (confirm("Tem certeza de que deseja excluir este produto?")) {
+                var li = button.parentNode;
+                li.parentNode.removeChild(li);
+                saveToLocalStorage();
+            }
         }
 
         function saveToLocalStorage() {
-            var productList = document.getElementById("productList").innerHTML;
-            localStorage.setItem('productList', productList);
+            try {
+                var productList = document.getElementById("productList").innerHTML;
+                localStorage.setItem('productList', productList);
 
-            var results = document.getElementById('results').innerHTML;
-            localStorage.setItem('results', results);
+                var results = document.getElementById('results').innerHTML;
+                localStorage.setItem('results', results);
+            } catch (e) {
+                console.error("Error saving to localStorage", e);
+            }
         }
 
         function loadFromLocalStorage() {
-            var productList = localStorage.getItem('productList');
-            var results = localStorage.getItem('results');
+            try {
+                var productList = localStorage.getItem('productList');
+                var results = localStorage.getItem('results');
 
-            if (productList) {
-                document.getElementById('productList').innerHTML = productList;
-            }
+                if (productList) {
+                    document.getElementById('productList').innerHTML = productList;
+                }
 
-            if (results) {
-                document.getElementById('results').innerHTML = results;
+                if (results) {
+                    document.getElementById('results').innerHTML = results;
+                }
+            } catch (e) {
+                console.error("Error loading from localStorage", e);
             }
         }
 
@@ -171,42 +195,16 @@
                     <li>Bandeira: R$${supplierCosts['bandeira'].toFixed(2)}</li>
                 </ul>
             `;
-
-            saveToLocalStorage();
-        }
-
-        function calculateTotalCash() {
-            var products = document.querySelectorAll('.productItem');
-            var totalCash = 0;
-
-            products.forEach(function(product) {
-                var price = parseFloat(product.children[3].textContent);
-                var quantity = parseInt(product.children[1].textContent);
-
-                var cash = price * quantity;
-                totalCash += cash;
-            });
-
-            return totalCash;
         }
 
         function clearStorage() {
-            localStorage.removeItem('productList');
-            localStorage.removeItem('results');
-            document.getElementById('productList').innerHTML = '';
-            document.getElementById('results').innerHTML = '';
+            if (confirm("Tem certeza de que deseja apagar todo o histórico?")) {
+                localStorage.removeItem('productList');
+                localStorage.removeItem('results');
+                document.getElementById('productList').innerHTML = '';
+                document.getElementById('results').innerHTML = '';
+            }
         }
-
-        document.getElementById('enviarWhats').addEventListener('click', function() {
-            var resultsDiv = document.getElementById('results');
-            var message = resultsDiv.textContent || resultsDiv.innerText;
-            var phoneNumber = '5553984415919'; // Código do país + número de telefone
-            var whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-            window.open(whatsappUrl, '_blank');
-        });
-        
-
     </script>
 </body>
 </html>

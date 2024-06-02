@@ -133,26 +133,29 @@ body {
                 display: flex;
                 flex-direction: column;
             }
-            ul{
+            .nome-historico{
                 list-style: none;
                 display: flex;
-                justify-content: space-between;
                 li{
                     width: 100%;
-                    display: flex;
-                    justify-content: center;
                     padding: 10px 0px;
-                }
-                .productItem{
-                    display: flex;
-                    justify-content: space-around;
                     text-align: center;
-                    div{
-                        width: 20%;
-                    }
+                }
+                
+            }
+            .productItem{
+                display: flex;
+                text-align: center;
+                div{
+                    width: 16.6%;
+                    text-align: center;
+                }
+                button{
+                    width: 16.6%;
+                    border: none;
+                    color: #ff3f31;
                 }
             }
-            
             .linha{
                 width: 90%;
                 height: 1px;
@@ -191,20 +194,22 @@ body {
             z-index: 5;
             position: absolute;
             width: 100%;
-            height: 100%;
             right: 0px;
             top: 0px;
             display: none;
             flex-direction: column;
             padding: 25px 15px;
             gap: 20px;
-            background-color: #262a2b;
-            img{
-                width: 35px;
+            .img-mobile{
+                width: 100%;
+                display: flex;
+                justify-content: end;
                 background-color: transparent;
-                float: right;
-                padding-bottom: 20px;
                 padding-right: 5px;
+            }
+            img{
+                width: 30px;
+                background-color: transparent;
             }
             #enviarWhats{
                 width: 100%;
