@@ -100,6 +100,7 @@ body .container{
         border-radius: 25px;
         font-weight: 500;
         border: none;
+        width: 100%;
     }  
     .historico{
         background-color: $bacgound-imput-historico-;
@@ -137,32 +138,18 @@ body .container{
         border-radius: 25px;
         font-weight: 500;
         border: none;
+        width: 100%;
     }
     #menuMobile{ 
         z-index: 5;
         position: absolute;
-        width: 80%;
-        height: 100%;
+        width: 100%;
         right: 0px;
-        top: 0px;
-        display: none;
+        top: 68px;
+        display: block;
         flex-direction: column;
-        padding: 15px;
+        padding: 40px 15px;
         gap: 20px;
-        .containerButtonClose{
-            width: 100%;
-            display: flex;
-            justify-content: end;
-            margin: 10px -10px;
-            button{
-                border: none;
-                width: 35px;
-                height: 35px;
-                img{
-                    width: 100%;
-                }
-            }
-        }
         #enviarWhats{
         width: 100%;
         bottom: 20px;

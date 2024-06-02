@@ -15,7 +15,7 @@
 <body>
     <header>
         <h2>PDV</h2>
-        <button id="botaoOpenMobile"><img src="img/menu-aberto.png" alt="" width="30px"></button>
+        <button id="botaoOpenMobile" onclick="clickMenu()"><img src="img/menu-aberto.png" alt="" width="30px"></button>
     </header>
     <div class="container">
         <form id="productForm">
@@ -65,9 +65,6 @@
         <div id="results"></div>
         
         <div id="menuMobile">
-            <div class="containerButtonClose">
-                <button id="CloseButton"><img src="img/x.png" alt=""></button>
-            </div>
             <button id="closeRegisterBtn" class="btn" onclick="calculateProfits()">Fexar caixa</button>
             <button id="clearStorageBtn" class="btn" onclick="clearStorage()">Apagar Histórico</button>
             <button id="enviarWhats">Enviar WhatsApp</button>
@@ -75,6 +72,14 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
+
+         function clickMenu() {
+                if(menuMobile.style.display == "block"){
+                    menuMobile.style.display = "none"
+                }else{
+                    menuMobile.style.display = "block"
+                }
+            }
 
         function addProduct() {
             var name = document.getElementById("productName").value;
@@ -198,17 +203,7 @@
 
             window.open(whatsappUrl, '_blank');
         });
-
-        const menuMobile = document.querySelector("#menuMobile")
-        const botaoOpenMobile = document.querySelector("#botaoOpenMobile")
-        const botaoCloseMobile = document.querySelector("#botaoCloseMobile")
-
-        botaoOpenMobile.addEventListener("click", function (){
-            menuMobile.classList.add("flex")
-        })
-        botaoCloseMobile.addEventListener("click", function (){
-            menuMobile.classList.remove("flex")
-        })
+        
 
     </script>
 </body>

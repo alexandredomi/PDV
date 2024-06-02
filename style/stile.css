@@ -92,6 +92,7 @@ body .container #closeRegisterBtn {
   border-radius: 25px;
   font-weight: 500;
   border: none;
+  width: 100%;
 }
 body .container .historico {
   background-color: #262a2b;
@@ -127,32 +128,18 @@ body .container #clearStorageBtn {
   border-radius: 25px;
   font-weight: 500;
   border: none;
+  width: 100%;
 }
 body .container #menuMobile {
   z-index: 5;
   position: absolute;
-  width: 80%;
-  height: 100%;
+  width: 100%;
   right: 0px;
-  top: 0px;
-  display: none;
+  top: 68px;
+  display: block;
   flex-direction: column;
-  padding: 15px;
+  padding: 40px 15px;
   gap: 20px;
-}
-body .container #menuMobile .containerButtonClose {
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  margin: 10px -10px;
-}
-body .container #menuMobile .containerButtonClose button {
-  border: none;
-  width: 35px;
-  height: 35px;
-}
-body .container #menuMobile .containerButtonClose button img {
-  width: 100%;
 }
 body .container #menuMobile #enviarWhats {
   width: 100%;
