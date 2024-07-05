@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 50px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#listaVendas, #listaProdutos {
+    margin-top: 20px;
+}
+
+.venda-item, .produto-item {
+    display: flex;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.venda-item button, .produto-item button {
+    background: #dc3545;
+}
+
+.venda-item button:hover, .produto-item button:hover {
+    background: #c82333;
+}
+
+#pesquisarProduto {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width:500px){
+    
+}

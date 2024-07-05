@@ -1,210 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Controle de Caixa</title>
-
-<link rel="stylesheet" href="style/stile.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de PDV</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h2>PDV</h2>
-        <button id="botaoOpenMobile" onclick="clickMenu()"><img src="img/menu-aberto.png" alt="" width="30px"></button>
-    </header>
     <div class="container">
-        <form id="productForm">
-            <div class="input-group">
-                <label for="productName">Nome do Produto :</label>
-                <input type="text" id="productName" required>
-            </div>
-            <div class="input-group">
-                <div>
-                    <label for="productQuantity">Quantidade :</label>
-                </div>
-                <input type="number" id="productQuantity" required min="1">
-            </div>
-            <div class="input-group">
-                <label for="productCost">Custo :</label>
-                <input type="number" id="productCost" required min="0" step="0.01">
-            </div>
-            <div class="input-group">
-                <label for="productPrice">Preço de Venda :</label>
-                <input type="number" id="productPrice" required min="0" step="0.01">
-            </div>
-            <div class="input-group">
-                <label for="productSupplier">Fornecedor :</label>
-                <select id="productSupplier" required>
-                    <option value="">Selecione um fornecedor</option>
-                    <option value="libert">Libert</option>
-                    <option value="dentinho">Dentinho</option>
-                    <option value="fox">Fox</option>
-                    <option value="juares">Juares</option>
-                    <option value="bandeira">Bandeira</option>
-                </select>
-            </div>
-            <button type="button" class="btn" onclick="addProduct()">Adicionar Produto</button>
-        </form>
-        <div class="historico">
-            <h2>Historico</h2>
-            <ul class="nome-historico">
-                <li>produto</li>
-                <li>quant.</li>
-                <li>custo</li>
-                <li>lucro</li>
-                <li>fornc.</li>
-                <li></li>
-            </ul>
-            <ul id="productList"></ul>
-            <div class="linha"></div>
+        <h1>Sistema de PDV</h1>
+        <div class="form-group">
+            <label for="produto">Produto:</label>
+            <input type="text" id="produto">
         </div>
-        
-        <div id="results"></div>
-        
-        <div id="menuMobile">
-            <div class="img-mobile">
-                <img src="img/x.png" alt="" onclick="clickCloseMenu()">
-            </div>
-            <button id="closeRegisterBtn" class="btn" onclick="calculateProfits()">Fexar caixa</button>
-            <button id="clearStorageBtn" class="btn" onclick="clearStorage()">Apagar Histórico</button>
-            <button id="enviarWhats">Enviar WhatsApp</button>
+        <div class="form-group">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade">
         </div>
+        <div class="form-group">
+            <label for="custo">Custo do Produto:</label>
+            <input type="number" id="custo">
+        </div>
+        <div class="form-group">
+            <label for="valorVenda">Valor de Venda:</label>
+            <input type="number" id="valorVenda">
+        </div>
+        <div class="form-group">
+            <label for="fornecedor">Fornecedor:</label>
+            <select id="fornecedor">
+                <option value="libert">Libert</option>
+                <option value="dentinho">Dentinho</option>
+                <option value="fox">Fox</option>
+                <option value="juares">Juares</option>
+                <option value="bandeira">Bandeira</option>
+            </select>
+        </div>
+        <button id="adicionarVenda">Adicionar Venda</button>
+        <div id="listaVendas"></div>
+        <button id="limparCaixa">Limpar Caixa</button>
+        <button id="fecharCaixa">Fechar Caixa</button>
+        <button id="enviarWhatsapp">Enviar para WhatsApp</button>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
-
-        function clickMenu() {
-            document.getElementById('menuMobile').style.display = "flex";
-        }
-
-        function clickCloseMenu(){
-            document.getElementById('menuMobile').style.display = "none";
-        }
-
-        function addProduct() {
-            var name = document.getElementById("productName").value;
-            var quantity = document.getElementById("productQuantity").value;
-            var cost = document.getElementById("productCost").value;
-            var price = document.getElementById("productPrice").value;
-            var supplier = document.getElementById("productSupplier").value;
-
-            if (name && quantity > 0 && cost >= 0 && price >= 0 && supplier) {
-                var productList = document.getElementById("productList");
-
-                var li = document.createElement("li");
-                li.classList.add("productItem");
-                li.innerHTML = `
-                    <div>${name}</div>
-                    <div>${quantity}</div>
-                    <div>${cost}</div>
-                    <div>${price}</div>
-                    <div>${supplier}</div>
-                    <button onclick="deleteProduct(this)">Excluir</button>
-                `;
-
-                productList.appendChild(li);
-
-                saveToLocalStorage();
-
-                // Clear form fields after adding the product
-                document.getElementById("productName").value = "";
-                document.getElementById("productQuantity").value = "";
-                document.getElementById("productCost").value = "";
-                document.getElementById("productPrice").value = "";
-                document.getElementById("productSupplier").value = "";
-            } else {
-                alert("Please fill out all fields correctly.");
-            }
-        }
-
-        function deleteProduct(button) {
-            if (confirm("Tem certeza de que deseja excluir este produto?")) {
-                var li = button.parentNode;
-                li.parentNode.removeChild(li);
-                saveToLocalStorage();
-            }
-        }
-
-        function saveToLocalStorage() {
-            try {
-                var productList = document.getElementById("productList").innerHTML;
-                localStorage.setItem('productList', productList);
-
-                var results = document.getElementById('results').innerHTML;
-                localStorage.setItem('results', results);
-            } catch (e) {
-                console.error("Error saving to localStorage", e);
-            }
-        }
-
-        function loadFromLocalStorage() {
-            try {
-                var productList = localStorage.getItem('productList');
-                var results = localStorage.getItem('results');
-
-                if (productList) {
-                    document.getElementById('productList').innerHTML = productList;
-                }
-
-                if (results) {
-                    document.getElementById('results').innerHTML = results;
-                }
-            } catch (e) {
-                console.error("Error loading from localStorage", e);
-            }
-        }
-
-        function calculateProfits() {
-            var products = document.querySelectorAll('.productItem');
-            var totalProfit = 0;
-            var supplierCosts = {
-                "libert": 0,
-                "dentinho": 0,
-                "fox": 0,
-                "juares": 0,
-                "bandeira": 0
-            };
-
-            products.forEach(function(product) {
-                var cost = parseFloat(product.children[2].textContent);
-                var price = parseFloat(product.children[3].textContent);
-                var quantity = parseInt(product.children[1].textContent);
-                var supplier = product.children[4].textContent;
-
-                var profit = (price - cost) * quantity;
-                totalProfit += profit;
-
-                supplierCosts[supplier] += cost * quantity;
-            });
-
-            var resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = `
-                <p><strong>Total do Caixa:</strong> R$${calculateTotalCash().toFixed(2)}</p>
-                <p><strong>Lucro Total:</strong> R$${totalProfit.toFixed(2)}</p>
-                <p><strong>Custo por Fornecedor:</strong></p>
-                <ul>
-                    <li>Libert: R$${supplierCosts['libert'].toFixed(2)}</li>
-                    <li>Dentinho: R$${supplierCosts['dentinho'].toFixed(2)}</li>
-                    <li>Fox: R$${supplierCosts['fox'].toFixed(2)}</li>
-                    <li>Juares: R$${supplierCosts['juares'].toFixed(2)}</li>
-                    <li>Bandeira: R$${supplierCosts['bandeira'].toFixed(2)}</li>
-                </ul>
-            `;
-        }
-
-        function clearStorage() {
-            if (confirm("Tem certeza de que deseja apagar todo o histórico?")) {
-                localStorage.removeItem('productList');
-                localStorage.removeItem('results');
-                document.getElementById('productList').innerHTML = '';
-                document.getElementById('results').innerHTML = '';
-            }
-        }
-    </script>
+    <div class="container">
+        <h2>Controle de Estoque</h2>
+        <div class="form-group">
+            <label for="nomeProduto">Nome do Produto:</label>
+            <input type="text" id="nomeProduto">
+        </div>
+        <div class="form-group">
+            <label for="quantidadeEstoque">Quantidade:</label>
+            <input type="number" id="quantidadeEstoque">
+        </div>
+        <div class="form-group">
+            <label for="corProduto">Cor:</label>
+            <input type="text" id="corProduto">
+        </div>
+        <div class="form-group">
+            <label for="custoProduto">Custo:</label>
+            <input type="number" id="custoProduto">
+        </div>
+        <div class="form-group">
+            <label for="precoVendaProduto">Preço de Venda:</label>
+            <input type="number" id="precoVendaProduto">
+        </div>
+        <button id="adicionarProduto">Adicionar Produto</button>
+        <input type="text" id="pesquisarProduto" placeholder="Pesquisar produto...">
+        <div id="listaProdutos"></div>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
