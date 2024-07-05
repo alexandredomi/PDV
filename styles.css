@@ -59,7 +59,6 @@ button:hover {
     margin-bottom: 10px;
     border: 1px solid #ddd;
 }
-
 .venda-item button, .produto-item button {
     background: #dc3545;
 }
@@ -76,6 +75,19 @@ button:hover {
     margin-bottom: 15px;
 }
 
-@media screen and (max-width:500px){
-    
+@media screen and (max-width:1250px){
+    .container{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .venda-item, .produto-item {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background: #f9f9f9;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+    }
 }
